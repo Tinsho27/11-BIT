@@ -47,30 +47,37 @@ VALUES ('Camila Rojas', 'camila.rojas@gmail.com', '1234', 'cliente', '-33.50, -7
 
 -- TC 05 Insertar videojuego con stock negativo
 INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
-VALUES ('Zelda', 25000, 'url.jpg', -3, 'Prueba', 1);----pasa pero no deberia de por que pasar, se tiene que buscar el problema
+VALUES ('Zelda', 25000, 'url.jpg', -3, 'Prueba', 1);
 
--- TC 06
+-- TC 06 Insertar videojuego con categoría inexistente
 INSERT INTO Videojuego_Categoria (id_videojuego, id_categoria)
-VALUES (1, 99);----pasa pero no deberia de por que pasar, se tiene que buscar el problema
+VALUES (1, 99); --No hay restricciones de categorias
 
+-- TC 07 Insertar videojuego con datos válidos
 INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
 VALUES ('Zelda OK', 25000, 'url.jpg', 5, 'Correcto', 1);
 
+-- TC 08 Actualizar datos del videojuego publicado por jefe de tienda
 INSERT INTO Lista_Deseos VALUES (1, 1);
-
 INSERT INTO Lista_Deseos VALUES (1, 1)---da error pero esta bien ya que es un duplicado
 
+
 INSERT INTO Carro_Videojuego VALUES (1, 1, 2);---da error pero deberia e pasar, ver por que da error
+
 
 INSERT INTO Carro_Videojuego VALUES (1, 1, 9999);
 INSERT INTO Carro_Videojuego VALUES (1, 1, 9999);----- lo vi 2 veces para ver si esata bien y con el segundo intento da error que es lo esperadoBoleta
 
+
 INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
 VALUES (1, CURRENT_DATE, 'Tarjeta', 'F999');----debe de generar una nueba boleta asi que ver de forma manual si esta bien ingresada 
+
 
 INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
 VALUES (1, CURRENT_DATE, 'Cheque', 'F998');------debe de dar error ya que no existe ese metood de compra aun en las tiendas ver y arreglar 
 
+
 INSERT INTO Valoracion VALUES (1, 1, 5, 'Muy bueno');----debe de pasar asi que ver por que da error 
+
 
 INSERT INTO Valoracion VALUES (1, 1, 4, 'Otra opinión');----- da error pero debe de ser por la duplicacion de una keyBoleta
