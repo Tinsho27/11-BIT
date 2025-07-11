@@ -40,7 +40,7 @@ ingresar aqui nombre de los archivos enumerados (primero archivo de tablas, segu
 - **Benjamin Benavides**  
   Rol: "" 
   Correo: b.benavidesq@utem.cl
-  GitHub: [@Bbvdnez](https://github.com/Bbvdnez)
+  GitHub: [@Bbvdenz](https://github.com/Bbvdenz)
 
 - ****  
   Rol: "" 
