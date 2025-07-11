@@ -1,0 +1,5 @@
+UPDATE Videojuego SET precio = 30000 WHERE id_videojuego = 1;
+
+UPDATE Videojuego SET stock = 0 WHERE id_videojuego = 2;---- no debe de poder comprarse verificar de forma manual 
+
+DELETE FROM Carro_Videojuego WHERE id_carro = 1 AND id_videojuego = 1;
