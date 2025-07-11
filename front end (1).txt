@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda de Videojuegos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            background: #444;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .game-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            padding: 10px;
+            text-align: center;
+        }
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .game-card h3 {
+            margin: 10px 0 5px;
+        }
+        .game-card p {
+            font-size: 14px;
+            color: #555;
+        }
+        .price {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #28a745;
+        }
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <header>
+        <h1>11-BIT Videojuegos</h1>
+        <p>Compra tus títulos favoritos al mejor precio</p>
+    </header>
+
+
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Categorías</a>
+        <a href="#">Carrito</a>
+        <a href="#">Login</a>
+    </nav>
+
+
+    <section class="container">
+        <!-- Tarjeta de Videojuego -->
+        <div class="game-card">
+            <img src="https://ejemplo.cl/zelda.jpg" alt="Zelda">
+            <h3>Zelda: Breath of the Wild</h3>
+            <p>Aventura épica en mundo abierto</p>
+            <div class="price">$45.990</div>
+        </div>
+
+
+        <div class="game-card">
+            <img src="https://ejemplo.cl/minecraft.jpg" alt="Minecraft">
+            <h3>Minecraft</h3>
+            <p>Juego de construcción en bloques</p>
+            <div class="price">$25.990</div>
+        </div>
+
+
+        <div class="game-card">
+            <img src="https://ejemplo.cl/fifa24.jpg" alt="FIFA 24">
+            <h3>FIFA 24</h3>
+            <p>Simulación deportiva de fútbol</p>
+            <div class="price">$58.990</div>
+        </div>
+
+
+        <div class="game-card">
+            <img src="https://ejemplo.cl/aoe4.jpg" alt="Age of Empires IV">
+            <h3>Age of Empires IV</h3>
+            <p>Estrategia en tiempo real</p>
+            <div class="price">$34.990</div>
+        </div>
+
+
+        <div class="game-card">
+            <img src="https://ejemplo.cl/gow.jpg" alt="God of War">
+            <h3>God of War</h3>
+            <p>Acción épica en la mitología nórdica</p>
+            <div class="price">$56.538</div>
+        </div>
+    </section>
+
+
+    <footer>
+        &copy; 2025 GameStore. Todos los derechos reservados.
+    </footer>
+
+
+</body>
+</html>
