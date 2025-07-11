@@ -28,17 +28,3 @@ ORDER BY total DESC;
 
 INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
 VALUES ('Nuevo juego', 20000, 'url.jpg', 5, 'Auditable', 1);
-
-UPDATE Videojuego SET stock = 10 WHERE id_videojuego = 1;
-
-DELETE FROM Videojuego WHERE id_videojuego = 1;-----debe de estar bloqueado ya que con un trigger debe de registrar que el juego si tiene ventas
-
-CALL actualizar_precio_categoria('Aventura', 10);----Aumenta precios en 10% de error se debe de buscar el por que pasa eso
-
-CALL reporte_ventas_usuario(1);------ Reporte de ventas por usuario, tabla con ventas del usuario 1
-
-UPDATE Videojuego SET precio = 30000 WHERE id_videojuego = 1;
-
-UPDATE Videojuego SET stock = 0 WHERE id_videojuego = 2;---- no debe de poder comprarse verificar de forma manual 
-
-DELETE FROM Carro_Videojuego WHERE id_carro = 1 AND id_videojuego = 1;
