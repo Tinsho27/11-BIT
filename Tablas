@@ -1,22 +1,22 @@
 CREATE TABLE Usuario (
     id_usuario SERIAL PRIMARY KEY,
-    nombre_usuario TEXT NOT NULL,
-    gmail TEXT NOT NULL UNIQUE,
+    nombre_usuario VARCHAR(100) NOT NULL,
+    gmail VARCHAR(150) NOT NULL UNIQUE,
     contrasena TEXT NOT NULL,
-    rol TEXT CHECK (rol IN ('cliente', 'administrador')),
+    rol VARCHAR(20) NOT NULL CHECK (rol IN ('cliente', 'administrador')),
     geolocalizacion TEXT
 );
 
 CREATE TABLE Tienda (
     id_tienda SERIAL PRIMARY KEY,
-    nombre_tienda TEXT NOT NULL,
+    nombre_tienda VARCHAR(50) NOT NULL,
     descripcion TEXT,
     id_administrador INT REFERENCES Usuario(id_usuario)
 );
 
 CREATE TABLE Videojuego (
     id_videojuego SERIAL PRIMARY KEY,
-    nombre_juego TEXT NOT NULL,
+    nombre_juego VARCHAR(100) NOT NULL,
     precio NUMERIC(10, 2),
     url_imagen TEXT,
     stock INT,
@@ -26,7 +26,7 @@ CREATE TABLE Videojuego (
 
 CREATE TABLE Categoria (
     id_categoria SERIAL PRIMARY KEY,
-    nombre_categoria TEXT NOT NULL
+    nombre_categoria VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Videojuego_Categoria (
@@ -44,16 +44,16 @@ CREATE TABLE Carro (
 CREATE TABLE Carro_Videojuego (
     id_carro INT REFERENCES Carro(id_carro),
     id_videojuego INT REFERENCES Videojuego(id_videojuego),
-    cantidad INT,
+    cantidad INT NOT NULL CHECK(cantidad >0),
     PRIMARY KEY (id_carro, id_videojuego)
 );
 
 CREATE TABLE Boleta (
-    id_boleta INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_boleta SERIAL PRIMARY KEY,
     id_usuario INTEGER,
-    fecha TEXT,
+    fecha DATE,
     metodo_pago TEXT,
-    factura TEXT
+    factura VARCHAR(50)
 );
 
 CREATE TABLE Boleta_Videojuego (
@@ -68,7 +68,7 @@ CREATE TABLE Valoracion (
     id_usuario INT REFERENCES Usuario(id_usuario),
     id_videojuego INT REFERENCES Videojuego(id_videojuego),
     puntaje INT CHECK (puntaje BETWEEN 1 AND 5),
-    comentario TEXT,
+    comentario VARCHAR(500),
     PRIMARY KEY (id_usuario, id_videojuego)
 );
 
