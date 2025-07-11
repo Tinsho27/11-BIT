@@ -109,21 +109,27 @@ INSERT INTO Valoracion VALUES
 INSERT INTO Lista_Deseos VALUES
 (1, 3), (2, 1), (3, 5), (4, 2), (5, 4);
 
+-- TC 01 Insertar usuario con datos válidos y rol 'jefe de tienda'
 INSERT INTO Usuario (nombre_usuario, gmail, contrasena, rol, geolocalizacion) 
-VALUES ('Pedro', 'pedro@example.com', 'abc1234', 'jefe', '-33.45, -70.66');
+VALUES ('Pedro', 'pedro@example.com', 'abc1234', 'administrador', '-33.45, -70.66');
 
+-- TC 02 Insertar usuario con correo NULL
 INSERT INTO Usuario (nombre_usuario, gmail, contrasena, rol, geolocalizacion)
 VALUES ('María García', NULL, '1234', 'cliente', '-33.45, -70.66');
 
+-- TC 03 Insertar usuario con rol inexistente
 INSERT INTO Usuario (nombre_usuario, gmail, contrasena, rol, geolocalizacion)
 VALUES ('Juana García', 'juana@gmail.com', '1234', 'manager', '-33.45, -70.66');
 
+-- TC 04 Insertar usuario cliente con datos válidos
 INSERT INTO Usuario (nombre_usuario, gmail, contrasena, rol, geolocalizacion)
 VALUES ('Camila Rojas', 'camila.rojas@gmail.com', '1234', 'cliente', '-33.50, -70.70');
 
+-- TC 05 Insertar videojuego con stock negativo
 INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
 VALUES ('Zelda', 25000, 'url.jpg', -3, 'Prueba', 1);----pasa pero no deberia de por que pasar, se tiene que buscar el problema
 
+-- TC 06
 INSERT INTO Videojuego_Categoria (id_videojuego, id_categoria)
 VALUES (1, 99);----pasa pero no deberia de por que pasar, se tiene que buscar el problema
 
