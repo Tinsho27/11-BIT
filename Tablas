@@ -19,7 +19,7 @@ CREATE TABLE Videojuego (
     nombre_juego VARCHAR(100) NOT NULL,
     precio NUMERIC(10, 2),
     url_imagen TEXT,
-    stock INT,
+    stock INT CHECK (stock >= 0),
     descripcion TEXT,
     id_tienda INT REFERENCES Tienda(id_tienda)
 );
