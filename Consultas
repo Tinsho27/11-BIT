@@ -1,17 +1,17 @@
-SELECT id_videojuego, SUM(cantidad) AS total_vendidos-----muetra los 3 juegos mas vendidos
+SELECT id_videojuego, SUM(cantidad) AS total_vendidos    -----muestra los 3 juegos mas vendidos
 FROM Boleta_Videojuego
 GROUP BY id_videojuego
 ORDER BY total_vendidos DESC
 LIMIT 3;
 
-SELECT id_videojuego, COUNT(*) AS veces_deseado-----los juegos mas deseados
+SELECT id_videojuego, COUNT(*) AS veces_deseado    -----los juegos mas deseados
 FROM Lista_Deseos
 GROUP BY id_videojuego
 ORDER BY veces_deseado DESC;
 
-SELECT * FROM Usuario WHERE geolocalizacion LIKE '%-33.4%';-----muestra los usuarios de santiago
+SELECT * FROM Usuario WHERE geolocalizacion LIKE '%-33.4%';    -----muestra los usuarios de santiago
 
-SELECT id_videojuego, SUM(cantidad) AS total-----los juegos mas vendidos en un top
+SELECT id_videojuego, SUM(cantidad) AS total    -----los juegos mas vendidos en un top
 FROM Boleta_Videojuego
 GROUP BY id_videojuego
 ORDER BY total DESC;
