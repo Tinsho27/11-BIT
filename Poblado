@@ -130,8 +130,6 @@ VALUES (1, 99);----pasa pero no deberia de por que pasar, se tiene que buscar el
 INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
 VALUES ('Zelda OK', 25000, 'url.jpg', 5, 'Correcto', 1);
 
-UPDATE Videojuego SET precio = 30000 WHERE id_videojuego = 1;
-
 INSERT INTO Lista_Deseos VALUES (1, 1);
 
 INSERT INTO Lista_Deseos VALUES (1, 1)---da error pero esta bien ya que es un duplicado
