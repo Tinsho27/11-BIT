@@ -1,3 +1,11 @@
+SELECT * FROM Lista_Deseos WHERE id_usuario = 1;
+
+SELECT * FROM Carro_Videojuego WHERE id_carro = 1;
+
+SELECT SUM(cantidad * precio) FROM Carro_Videojuego
+JOIN Videojuego USING (id_videojuego)------ da null pero deberia de dar la suma total, ver por que pasa eso 
+WHERE id_carro = 1;
+
 SELECT id_videojuego, SUM(cantidad) AS total_vendidos    -----muestra los 3 juegos mas vendidos
 FROM Boleta_Videojuego
 GROUP BY id_videojuego
@@ -28,3 +36,9 @@ DELETE FROM Videojuego WHERE id_videojuego = 1;-----debe de estar bloqueado ya q
 CALL actualizar_precio_categoria('Aventura', 10);----Aumenta precios en 10% de error se debe de buscar el por que pasa eso
 
 CALL reporte_ventas_usuario(1);------ Reporte de ventas por usuario, tabla con ventas del usuario 1
+
+UPDATE Videojuego SET precio = 30000 WHERE id_videojuego = 1;
+
+UPDATE Videojuego SET stock = 0 WHERE id_videojuego = 2;---- no debe de poder comprarse verificar de forma manual 
+
+DELETE FROM Carro_Videojuego WHERE id_carro = 1 AND id_videojuego = 1;
