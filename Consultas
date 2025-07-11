@@ -1,0 +1,30 @@
+SELECT id_videojuego, SUM(cantidad) AS total_vendidos-----muetra los 3 juegos mas vendidos
+FROM Boleta_Videojuego
+GROUP BY id_videojuego
+ORDER BY total_vendidos DESC
+LIMIT 3;
+
+SELECT id_videojuego, COUNT(*) AS veces_deseado-----los juegos mas deseados
+FROM Lista_Deseos
+GROUP BY id_videojuego
+ORDER BY veces_deseado DESC;
+
+SELECT * FROM Usuario WHERE geolocalizacion LIKE '%-33.4%';-----muestra los usuarios de santiago
+
+SELECT id_videojuego, SUM(cantidad) AS total-----los juegos mas vendidos en un top
+FROM Boleta_Videojuego
+GROUP BY id_videojuego
+ORDER BY total DESC;
+
+---TC26: Videojuegos según ubicación del usuario,se debe de construir una relación entre tienda, usuario y ventas
+
+INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
+VALUES ('Nuevo juego', 20000, 'url.jpg', 5, 'Auditable', 1);
+
+UPDATE Videojuego SET stock = 10 WHERE id_videojuego = 1;
+
+DELETE FROM Videojuego WHERE id_videojuego = 1;-----debe de estar bloqueado ya que con un trigger debe de registrar que el juego si tiene ventas
+
+CALL actualizar_precio_categoria('Aventura', 10);----Aumenta precios en 10% de error se debe de buscar el por que pasa eso
+
+CALL reporte_ventas_usuario(1);------ Reporte de ventas por usuario, tabla con ventas del usuario 1
