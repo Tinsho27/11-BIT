@@ -37,10 +37,10 @@ ingresar aqui nombre de los archivos enumerados (primero archivo de tablas, segu
   Correo: msegurad@utem.cl
   GitHub: [@Tinsho27](https://github.com/Tinsho27)
 
-- ****  
+- **Benjamin Benavides**  
   Rol: "" 
-  Correo: 
-  GitHub:
+  Correo: b.benavidesq@utem.cl
+  GitHub: [@Bbvdnez](https://github.com/Bbvdnez)
 
 - ****  
   Rol: "" 
