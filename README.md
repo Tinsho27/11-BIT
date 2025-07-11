@@ -1,2 +1,48 @@
 # Proyecto Base de Datos
 Inicialización del repositorio.
+
+# 🕹️ Proyecto Base de Datos: Tienda de Videojuegos
+
+## 🎯 Contexto
+
+Este proyecto fue desarrollado como parte del laboratorio del curso de Base de Datos de la Universidad Tecnológica Metropolitana (UTEM). El objetivo es modelar e implementar una base de datos para una tienda de videojuegos en línea, que permita gestionar usuarios, productos, compras, carritos, listas de deseos, categorías y más.
+
+El sistema está implementado en PostgreSQL y contiene tanto el modelo entidad-relación como el modelo relacional. Además, se desarrollaron procedimientos, funciones, triggers y consultas específicas para cubrir distintos casos de uso.
+
+---
+
+## 📁 Archivos
+
+ingresar aqui nombre de los archivos enumerados (primero archivo de tablas, segundo poblado, tercero consultas)
+
+## 👥 Equipo de desarrollo
+
+- **Matias Rojas**  
+  Rol: "" 
+  Correo: mrojasvil@utem.cl 
+  GitHub: [@mati7878](https://github.com/mati7878)
+
+- **Javiera Gaete**  
+  Rol: "" 
+  Correo: jgaetej@utem.cl
+  GitHub: [@javieragaete](https://github.com/javieragaete)
+
+- **Cristopher Gomez**  
+  Rol: "" 
+  Correo: cgomezr@utem.cl
+  GitHub: [@FabOxCL](https://github.com/FabOxCL)
+
+- **Martin Segura**  
+  Rol: "" 
+  Correo: msegurad@utem.cl
+  GitHub: [@Tinsho27](https://github.com/Tinsho27)
+
+- ****  
+  Rol: "" 
+  Correo: 
+  GitHub:
+
+- ****  
+  Rol: "" 
+  Correo: 
+  GitHub:
