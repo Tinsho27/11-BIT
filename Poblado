@@ -136,22 +136,10 @@ INSERT INTO Lista_Deseos VALUES (1, 1);
 
 INSERT INTO Lista_Deseos VALUES (1, 1)---da error pero esta bien ya que es un duplicado
 
-SELECT * FROM Lista_Deseos WHERE id_usuario = 1;
-
 INSERT INTO Carro_Videojuego VALUES (1, 1, 2);---da error pero deberia e pasar, ver por que da error
-
-SELECT * FROM Carro_Videojuego WHERE id_carro = 1;
-
-SELECT SUM(cantidad * precio) FROM Carro_Videojuego
-JOIN Videojuego USING (id_videojuego)------ da null pero deberia de dar la suma total, ver por que pasa eso 
-WHERE id_carro = 1;
-
-DELETE FROM Carro_Videojuego WHERE id_carro = 1 AND id_videojuego = 1;
 
 INSERT INTO Carro_Videojuego VALUES (1, 1, 9999);
 INSERT INTO Carro_Videojuego VALUES (1, 1, 9999);----- lo vi 2 veces para ver si esata bien y con el segundo intento da error que es lo esperadoBoleta
-
-UPDATE Videojuego SET stock = 0 WHERE id_videojuego = 2;---- no debe de poder comprarse verificar de forma manual 
 
 INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
 VALUES (1, CURRENT_DATE, 'Tarjeta', 'F999');----debe de generar una nueba boleta asi que ver de forma manual si esta bien ingresada 
