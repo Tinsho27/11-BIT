@@ -1,0 +1,79 @@
+CREATE TABLE Usuario (
+    id_usuario SERIAL PRIMARY KEY,
+    nombre_usuario TEXT NOT NULL,
+    gmail TEXT NOT NULL UNIQUE,
+    contrasena TEXT NOT NULL,
+    rol TEXT CHECK (rol IN ('cliente', 'administrador')),
+    geolocalizacion TEXT
+);
+
+CREATE TABLE Tienda (
+    id_tienda SERIAL PRIMARY KEY,
+    nombre_tienda TEXT NOT NULL,
+    descripcion TEXT,
+    id_administrador INT REFERENCES Usuario(id_usuario)
+);
+
+CREATE TABLE Videojuego (
+    id_videojuego SERIAL PRIMARY KEY,
+    nombre_juego TEXT NOT NULL,
+    precio NUMERIC(10, 2),
+    url_imagen TEXT,
+    stock INT,
+    descripcion TEXT,
+    id_tienda INT REFERENCES Tienda(id_tienda)
+);
+
+CREATE TABLE Categoria (
+    id_categoria SERIAL PRIMARY KEY,
+    nombre_categoria TEXT NOT NULL
+);
+
+CREATE TABLE Videojuego_Categoria (
+    id_videojuego INT REFERENCES Videojuego(id_videojuego),
+    id_categoria INT REFERENCES Categoria(id_categoria),
+    PRIMARY KEY (id_videojuego, id_categoria)
+);
+
+CREATE TABLE Carro (
+    id_carro SERIAL PRIMARY KEY,
+    id_usuario INT REFERENCES Usuario(id_usuario),
+    activo BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE Carro_Videojuego (
+    id_carro INT REFERENCES Carro(id_carro),
+    id_videojuego INT REFERENCES Videojuego(id_videojuego),
+    cantidad INT,
+    PRIMARY KEY (id_carro, id_videojuego)
+);
+
+CREATE TABLE Boleta (
+    id_boleta INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_usuario INTEGER,
+    fecha TEXT,
+    metodo_pago TEXT,
+    factura TEXT
+);
+
+CREATE TABLE Boleta_Videojuego (
+    id_boleta INT REFERENCES Boleta(id_boleta),
+    id_videojuego INT REFERENCES Videojuego(id_videojuego),
+    cantidad INT,
+    precio_unitario NUMERIC(10,2),
+    PRIMARY KEY (id_boleta, id_videojuego)
+);
+
+CREATE TABLE Valoracion (
+    id_usuario INT REFERENCES Usuario(id_usuario),
+    id_videojuego INT REFERENCES Videojuego(id_videojuego),
+    puntaje INT CHECK (puntaje BETWEEN 1 AND 5),
+    comentario TEXT,
+    PRIMARY KEY (id_usuario, id_videojuego)
+);
+
+CREATE TABLE Lista_Deseos (
+    id_usuario INT REFERENCES Usuario(id_usuario),
+    id_videojuego INT REFERENCES Videojuego(id_videojuego),
+    PRIMARY KEY (id_usuario, id_videojuego)
+);
