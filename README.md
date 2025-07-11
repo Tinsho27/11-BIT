@@ -42,7 +42,7 @@ ingresar aqui nombre de los archivos enumerados (primero archivo de tablas, segu
   Correo: b.benavidesq@utem.cl
   GitHub: [@Bbvdenz](https://github.com/Bbvdenz)
 
-- ****  
+- **Isai Lagos**  
   Rol: "" 
-  Correo: 
-  GitHub:
+  Correo: isailagos01@gmail.com
+  GitHub: [@isai2606](https://github.com/isai2606)
