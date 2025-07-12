@@ -13,7 +13,7 @@ El sistema está implementado en PostgreSQL y contiene tanto el modelo entidad-r
 
 ## 📁 Archivos
 
-1. Front END
+1. Front END.html
 2. Tablas
 3. Poblado
 4. Consultas
