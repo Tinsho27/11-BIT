@@ -65,6 +65,7 @@ SELECT
 FROM Carro c
 JOIN Carro_Videojuego cv ON c.id_carro = cv.id_carro
 JOIN Videojuego v ON cv.id_videojuego = v.id_videojuego
+WHERE c.id_usuario=1
 
 -- TC 14 Mostrar el precio total a pagar por el carrito de compras
 SELECT SUM(cantidad * precio) FROM Carro_Videojuego
