@@ -13,11 +13,11 @@ El sistema está implementado en PostgreSQL y contiene tanto el modelo entidad-r
 
 ## 📁 Archivos
 
-1. Front END.html
-2. Tablas
-3. Poblado
-4. Consultas
-5. Triggers
+1. FrontEND.html
+2. Tablas.sql
+3. Poblado.sql
+4. Consultas.sql
+5. Triggers.sql
 
 ## 👥 Equipo de desarrollo
 
