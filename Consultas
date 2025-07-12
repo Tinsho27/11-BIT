@@ -16,11 +16,6 @@ FROM Boleta_Videojuego
 GROUP BY id_videojuego
 ORDER BY total DESC;
 
----TC26: Videojuegos según ubicación del usuario,se debe de construir una relación entre tienda, usuario y ventas
-
-INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
-VALUES ('Nuevo juego', 20000, 'url.jpg', 5, 'Auditable', 1);
-
 -- TC 01 Insertar usuario con datos válidos y rol 'jefe de tienda'
 INSERT INTO Usuario (nombre_usuario, gmail, contrasena, rol, geolocalizacion) 
 VALUES ('Pedro', 'pedro@example.com', 'abc1234', 'administrador', '-33.45, -70.66');
@@ -80,8 +75,36 @@ INSERT INTO Carro_Videojuego VALUES (1, 1, 2);
 -- TC 17 Cliente intenta comprar más unidades que el stock disponible
 INSERT INTO Carro_Videojuego VALUES (1, 1, 9999);
 
+-- TC 18 Cliente intenta pagar carrito que contiene un videojuego sin stock
+INSERT INTO Carro_Videojuego VALUES (2, 5, 1);
+
+-- TC 19 
 
 
+-- TC 20
+
+
+-- TC 21
+
+
+-- TC 22
+
+
+-- TC 23
+
+
+-- TC 24
+
+
+-- TC 25
+
+
+-- TC 26 
+
+
+-- TC 27 Videojuegos según ubicación del usuario,se debe de construir una relación entre tienda, usuario y ventas
+INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
+VALUES ('Nuevo juego', 20000, 'url.jpg', 5, 'Auditable', 1);
 
 
 INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
