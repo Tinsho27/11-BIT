@@ -22,31 +22,25 @@ El sistema está implementado en PostgreSQL y contiene tanto el modelo entidad-r
 ## 👥 Equipo de desarrollo
 
 - **Matias Rojas**  
-  Rol: "" 
   Correo: mrojasvil@utem.cl 
   GitHub: [@mati7878](https://github.com/mati7878)
 
 - **Javiera Gaete**  
-  Rol: "" 
   Correo: jgaetej@utem.cl
   GitHub: [@javieragaete](https://github.com/javieragaete)
 
 - **Cristopher Gomez**  
-  Rol: "" 
   Correo: cgomezr@utem.cl
   GitHub: [@FabOxCL](https://github.com/FabOxCL)
 
 - **Martin Segura**  
-  Rol: "" 
   Correo: msegurad@utem.cl
   GitHub: [@Tinsho27](https://github.com/Tinsho27)
 
 - **Benjamin Benavides**  
-  Rol: "" 
   Correo: b.benavidesq@utem.cl
   GitHub: [@Bbvdenz](https://github.com/Bbvdenz)
 
 - **Isai Lagos**  
-  Rol: "" 
   Correo: isailagos01@gmail.com
   GitHub: [@isai2606](https://github.com/isai2606)
