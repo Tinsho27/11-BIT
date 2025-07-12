@@ -1,13 +1,23 @@
-UPDATE Videojuego SET stock = 10 WHERE id_videojuego = 1;
+CREATE OR REPLACE FUNCTION verificar_stock()
+RETURNS TRIGGER AS $$
+DECLARE
+    stock_disponible INT;
+BEGIN
+    SELECT stock INTO stock_disponible
+    FROM Videojuego
+    WHERE id_videojuego = NEW.id_videojuego;
 
-DELETE FROM Videojuego WHERE id_videojuego = 1;-----debe de estar bloqueado ya que con un trigger debe de registrar que el juego si tiene ventas
+    IF stock_disponible IS NULL THEN
+        RAISE EXCEPTION 'El videojuego no existe.';
+    ELSIF NEW.cantidad > stock_disponible THEN
+        RAISE EXCEPTION 'Error: no se puede procesar la compra por stock insuficiente';
+    END IF;
 
-CALL actualizar_precio_categoria('Aventura', 10);----Aumenta precios en 10% de error se debe de buscar el por que pasa eso
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
-CALL reporte_ventas_usuario(1);------ Reporte de ventas por usuario, tabla con ventas del usuario 1
-
-UPDATE Videojuego SET precio = 30000 WHERE id_videojuego = 1;
-
-UPDATE Videojuego SET stock = 0 WHERE id_videojuego = 2;---- no debe de poder comprarse verificar de forma manual 
-
-DELETE FROM Carro_Videojuego WHERE id_carro = 1 AND id_videojuego = 1;
+CREATE TRIGGER trg_verificar_stock
+BEFORE INSERT ON Carro_Videojuego
+FOR EACH ROW
+EXECUTE FUNCTION verificar_stock();
