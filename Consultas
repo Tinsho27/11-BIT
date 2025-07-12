@@ -118,19 +118,49 @@ ORDER BY total DESC;
 INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
 VALUES ('Nuevo juego', 20000, 'url.jpg', 5, 'Auditable', 1);
 
---TC28 Trigger que registra cada vez que se inserta un videojuego
-INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
-VALUES ('Nuevo juego', 20000, 'url.jpg', 5, 'Auditable', 1);
-
---TC29 Trigger que registra actualización de stock de videojuegos
-UPDATE Videojuego SET stock = 10 WHERE id_videojuego = 1;
-
---TC30 Trigger DELETE FROM Videojuego WHERE id_videojuego = 1;
-DELETE FROM Videojuego WHERE id_videojuego = 1;
 
 --TC31 Actualizar precio de videojuegos por categoría
-CALL actualizar_precio_categoria('Aventura', 10);
+CREATE OR REPLACE PROCEDURE actualizar_precio_categoria(
+    nombre_categoria_param VARCHAR,
+    porcentaje_aumento NUMERIC
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Videojuego v
+    SET precio = ROUND(precio * (1 + porcentaje_aumento / 100), 2)
+    WHERE v.id_videojuego IN (
+        SELECT vc.id_videojuego
+        FROM Videojuego_Categoria vc
+        JOIN Categoria c ON vc.id_categoria = c.id_categoria
+        WHERE LOWER(c.nombre_categoria) = LOWER(nombre_categoria_param)
+    );
+END;
+$$;
+
+CALL actualizar_precio_categoria('aventura', 10);
 
 --TC32 Generar reporte de ventas por usuario
-CALL reporte_ventas_usuario(1);
+CREATE OR REPLACE PROCEDURE reporte_ventas_usuario(
+    p_id_usuario INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Devuelve la tabla con el reporte
+    RETURN QUERY
+    SELECT 
+        v.nombre_juego,
+        b.fecha,
+        bv.cantidad,
+        bv.precio_unitario,
+        (bv.cantidad * bv.precio_unitario) AS monto_total
+    FROM Boleta b
+    JOIN Boleta_Videojuego bv ON b.id_boleta = bv.id_boleta
+    JOIN Videojuego v ON bv.id_videojuego = v.id_videojuego
+    WHERE b.id_usuario = p_id_usuario
+    ORDER BY b.fecha DESC;
+END;
+$$;
 
+CALL reporte_ventas_usuario(1);
