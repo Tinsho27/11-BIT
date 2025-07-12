@@ -35,7 +35,13 @@ INSERT INTO Lista_Deseos VALUES (1, 1);
 INSERT INTO Lista_Deseos VALUES (1, 1);
 
 -- TC 11 Mostrar la lista de deseos de un usuario
-SELECT * FROM Lista_Deseos WHERE id_usuario = 1;
+SELECT 
+    u.nombre_usuario,
+    v.nombre_juego
+FROM Lista_Deseos ld
+JOIN Usuario u ON ld.id_usuario = u.id_usuario
+JOIN Videojuego v ON ld.id_videojuego = v.id_videojuego
+WHERE ld.id_usuario = 3;
 
 -- TC 12 Agregar un producto al carrito de compras
 INSERT INTO Carro_Videojuego VALUES (1, 1, 1);
