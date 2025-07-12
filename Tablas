@@ -12,7 +12,7 @@ CREATE TABLE Tienda (
     nombre_tienda VARCHAR(50) NOT NULL,
     descripcion TEXT,
     id_administrador INT REFERENCES Usuario(id_usuario),
-    geolocalizaciont TEXT
+    ubicacion TEXT
 );
 
 CREATE TABLE Videojuego (
