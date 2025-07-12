@@ -46,7 +46,7 @@ VALUES ('Zelda OK', 25000, 'url.jpg', 5, 'Correcto', 1);
 
 -- TC 09 Usuario agrega videojuego a su lista de deseos
 INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
-VALUES ('Fornai', 1000, 'url.jpg', 2, 'El fornai', 1);
+VALUES ('Fortnite', 19990, 'https://ejemplo.cl/fortnite.jpg', 9999, 'Battle Royale multijugador', 2);
 
 -- TC 10 Usuario intenta agregar dos veces el mismo videojuego a la lista
 INSERT INTO Lista_Deseos VALUES (1, 1);
@@ -76,9 +76,11 @@ INSERT INTO Carro_Videojuego VALUES (1, 1, 2);
 INSERT INTO Carro_Videojuego VALUES (1, 1, 9999);
 
 -- TC 18 Cliente intenta pagar carrito que contiene un videojuego sin stock
-INSERT INTO Carro_Videojuego VALUES (2, 5, 1);
+INSERT INTO Carro_Videojuego VALUES (2, 12, 1);
 
--- TC 19 
+-- TC 19 Cliente realiza compra con productos válidos en el carrito
+INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
+VALUES (1, CURRENT_DATE, 'Tarjeta', 'F999');
 
 
 -- TC 20
@@ -108,7 +110,7 @@ VALUES ('Nuevo juego', 20000, 'url.jpg', 5, 'Auditable', 1);
 
 
 INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
-VALUES (1, CURRENT_DATE, 'Tarjeta', 'F999');----debe de generar una nueba boleta asi que ver de forma manual si esta bien ingresada 
+VALUES (1, CURRENT_DATE, 'Tarjeta', 'F999');----debe de generar una nueva boleta asi que ver de forma manual si esta bien ingresada 
 
 
 INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
