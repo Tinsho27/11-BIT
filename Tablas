@@ -11,7 +11,8 @@ CREATE TABLE Tienda (
     id_tienda SERIAL PRIMARY KEY,
     nombre_tienda VARCHAR(50) NOT NULL,
     descripcion TEXT,
-    id_administrador INT REFERENCES Usuario(id_usuario)
+    id_administrador INT REFERENCES Usuario(id_usuario),
+    geolocalizaciont TEXT
 );
 
 CREATE TABLE Videojuego (
