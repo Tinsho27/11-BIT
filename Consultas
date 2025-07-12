@@ -1,11 +1,3 @@
-SELECT * FROM Lista_Deseos WHERE id_usuario = 1;
-
-SELECT * FROM Carro_Videojuego WHERE id_carro = 1;
-
-SELECT SUM(cantidad * precio) FROM Carro_Videojuego
-JOIN Videojuego USING (id_videojuego)------ da null pero deberia de dar la suma total, ver por que pasa eso 
-WHERE id_carro = 1;
-
 SELECT id_videojuego, SUM(cantidad) AS total_vendidos    -----muestra los 3 juegos mas vendidos
 FROM Boleta_Videojuego
 GROUP BY id_videojuego
@@ -65,12 +57,31 @@ VALUES ('Fornai', 1000, 'url.jpg', 2, 'El fornai', 1);
 INSERT INTO Lista_Deseos VALUES (1, 1);
 INSERT INTO Lista_Deseos VALUES (1, 1);
 
--- TC 11
-INSERT INTO Carro_Videojuego VALUES (1, 1, 2);---da error pero deberia e pasar, ver por que da error
+-- TC 11 Mostrar la lista de deseos de un usuario
+SELECT * FROM Lista_Deseos WHERE id_usuario = 1;
 
+-- TC 12 Agregar un producto al carrito de compras
+INSERT INTO Carro_Videojuego VALUES (1, 1, 1);
 
+-- TC 13 Mostrar los productos del carrito de compras
+SELECT * FROM Carro_Videojuego WHERE id_carro = 1;
+
+-- TC 14 Mostrar el precio total a pagar por el carrito de compras
+SELECT SUM(cantidad * precio) FROM Carro_Videojuego
+JOIN Videojuego USING (id_videojuego) 
+WHERE id_carro = 1;
+
+-- TC 15 Eliminar un producto del carrito de compras
+DELETE FROM Carro_Videojuego WHERE id_carro = 1 AND id_videojuego = 1;
+
+-- TC 16 Cliente agrega videojuegos al carrito con stock disponible
+INSERT INTO Carro_Videojuego VALUES (1, 1, 2);
+
+-- TC 17 Cliente intenta comprar más unidades que el stock disponible
 INSERT INTO Carro_Videojuego VALUES (1, 1, 9999);
-INSERT INTO Carro_Videojuego VALUES (1, 1, 9999);----- lo vi 2 veces para ver si esata bien y con el segundo intento da error que es lo esperadoBoleta
+
+
+
 
 
 INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
@@ -98,4 +109,4 @@ UPDATE Videojuego SET precio = 30000 WHERE id_videojuego = 1;
 
 UPDATE Videojuego SET stock = 0 WHERE id_videojuego = 2;---- no debe de poder comprarse verificar de forma manual 
 
-DELETE FROM Carro_Videojuego WHERE id_carro = 1 AND id_videojuego = 1;
+
