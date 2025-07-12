@@ -102,13 +102,11 @@ ORDER BY total_vendidos DESC
 LIMIT 3;
 
 -- TC 25 Mostrar todos los productos que se vendan en una ubicación geográfica específica
-SELECT v.nombre_juego "Juego", u.geolocalizacion "Localización"
+SELECT  v.nombre_juego "Juego", t.ubicacion "Ubicacion"
 FROM Videojuego v
 JOIN Tienda t ON v.id_tienda = t.id_tienda
-JOIN Usuario u ON t.id_administrador = u.id_usuario
 WHERE v.stock > 0
-  AND u.geolocalizacion LIKE '%-33.4%'
-  AND u.geolocalizacion LIKE '%-70.6%';
+  AND t.ubicacion ILIKE 'Santiago';
 
 -- TC 26 Mostrar ranking de los productos con más ventas
 SELECT id_videojuego, SUM(cantidad) AS total
