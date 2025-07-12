@@ -21,3 +21,63 @@ CREATE TRIGGER trg_verificar_stock
 BEFORE INSERT ON Carro_Videojuego
 FOR EACH ROW
 EXECUTE FUNCTION verificar_stock();
+
+CREATE OR REPLACE FUNCTION procesar_compra()
+RETURNS TRIGGER AS $$
+DECLARE
+    carrito_id INT;
+    item RECORD;
+BEGIN
+    -- Buscar el carrito activo del usuario
+    SELECT id_carro INTO carrito_id
+    FROM Carro
+    WHERE id_usuario = NEW.id_usuario AND activo = TRUE
+    LIMIT 1;
+
+    IF carrito_id IS NULL THEN
+        RAISE EXCEPTION 'El usuario no tiene un carrito activo.';
+    END IF;
+
+    -- Procesar cada videojuego del carrito
+    FOR item IN
+        SELECT * FROM Carro_Videojuego WHERE id_carro = carrito_id
+    LOOP
+        -- Validar stock suficiente
+        PERFORM 1 FROM Videojuego
+        WHERE id_videojuego = item.id_videojuego AND stock >= item.cantidad;
+
+        IF NOT FOUND THEN
+            RAISE EXCEPTION 'Stock insuficiente para el videojuego con ID %', item.id_videojuego;
+        END IF;
+
+        -- Descontar stock
+        UPDATE Videojuego
+        SET stock = stock - item.cantidad
+        WHERE id_videojuego = item.id_videojuego;
+
+        -- Insertar en Boleta_Videojuego
+        INSERT INTO Boleta_Videojuego (id_boleta, id_videojuego, cantidad, precio_unitario)
+        VALUES (
+            NEW.id_boleta,
+            item.id_videojuego,
+            item.cantidad,
+            (SELECT precio FROM Videojuego WHERE id_videojuego = item.id_videojuego)
+        );
+    END LOOP;
+
+    -- Vaciar el carrito
+    DELETE FROM Carro_Videojuego WHERE id_carro = carrito_id;
+
+    -- Marcar el carrito como inactivo
+    UPDATE Carro
+    SET activo = FALSE
+    WHERE id_carro = carrito_id;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_procesar_compra
+AFTER INSERT ON Boleta
+FOR EACH ROW
+EXECUTE FUNCTION procesar_compra();
