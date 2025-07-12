@@ -1,6 +1,3 @@
-# Proyecto Base de Datos
-Inicialización del repositorio.
-
 # 🕹️ Proyecto Base de Datos: Tienda de Videojuegos
 
 ## 🎯 Contexto
