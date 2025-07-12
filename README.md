@@ -13,7 +13,11 @@ El sistema está implementado en PostgreSQL y contiene tanto el modelo entidad-r
 
 ## 📁 Archivos
 
-ingresar aqui nombre de los archivos enumerados (primero archivo de tablas, segundo poblado, tercero consultas)
+1. Front END
+2. Tablas
+3. Poblado
+4. Consultas
+5. Triggers
 
 ## 👥 Equipo de desarrollo
 
