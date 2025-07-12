@@ -41,7 +41,13 @@ SELECT * FROM Lista_Deseos WHERE id_usuario = 1;
 INSERT INTO Carro_Videojuego VALUES (1, 1, 1);
 
 -- TC 13 Mostrar los productos del carrito de compras
-SELECT * FROM Carro_Videojuego WHERE id_carro = 1;
+SELECT 
+    v.nombre_juego,
+    cv.cantidad
+FROM Carro c
+JOIN Carro_Videojuego cv ON c.id_carro = cv.id_carro
+JOIN Videojuego v ON cv.id_videojuego = v.id_videojuego
+WHERE c.id_usuario=1
 
 -- TC 14 Mostrar el precio total a pagar por el carrito de compras
 SELECT SUM(cantidad * precio) FROM Carro_Videojuego
