@@ -45,6 +45,9 @@ INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id
 ('Hollow Knight', 32830, 'https://ejemplo.cl/hollow.jpg', 22, 'Metroidvania desafiante y atmosférico', 4),
 ('NBA 2K24', 29990, 'https://ejemplo.cl/nba2k24.jpg', 15, 'Baloncesto profesional', 4),
 ('Fortnite', 19990, 'https://ejemplo.cl/fortnite.jpg', 9999, 'Battle Royale multijugador', 2);
+INSERT INTO Videojuego VALUES
+(12,'FreeFire', 990, 'https://ejemplo.cl/FreeFire.jpg', 0, 'Aventura épica en mundo abierto', 1);
+
 
 -- Videojuego_Categoria
 INSERT INTO Videojuego_Categoria VALUES
