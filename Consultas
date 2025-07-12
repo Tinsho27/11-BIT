@@ -58,10 +58,13 @@ INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id
 VALUES ('Zelda OK', 25000, 'url.jpg', 5, 'Correcto', 1);
 
 -- TC 08 Actualizar datos del videojuego publicado por jefe de tienda
+
+
+-- TC 09 Usuario agrega videojuego a su lista de deseos
 INSERT INTO Lista_Deseos VALUES (1, 1);
 INSERT INTO Lista_Deseos VALUES (1, 1)---da error pero esta bien ya que es un duplicado
 
-
+-- TC 10 Usuario intenta agregar dos veces el mismo videojuego a la lista
 INSERT INTO Carro_Videojuego VALUES (1, 1, 2);---da error pero deberia e pasar, ver por que da error
 
 
