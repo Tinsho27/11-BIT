@@ -1,21 +1,3 @@
-SELECT id_videojuego, SUM(cantidad) AS total_vendidos    -----muestra los 3 juegos mas vendidos
-FROM Boleta_Videojuego
-GROUP BY id_videojuego
-ORDER BY total_vendidos DESC
-LIMIT 3;
-
-SELECT id_videojuego, COUNT(*) AS veces_deseado    -----los juegos mas deseados
-FROM Lista_Deseos
-GROUP BY id_videojuego
-ORDER BY veces_deseado DESC;
-
-SELECT * FROM Usuario WHERE geolocalizacion LIKE '%-33.4%';    -----muestra los usuarios de santiago
-
-SELECT id_videojuego, SUM(cantidad) AS total    -----los juegos mas vendidos en un top
-FROM Boleta_Videojuego
-GROUP BY id_videojuego
-ORDER BY total DESC;
-
 -- TC 01 Insertar usuario con datos válidos y rol 'jefe de tienda'
 INSERT INTO Usuario (nombre_usuario, gmail, contrasena, rol, geolocalizacion) 
 VALUES ('Pedro', 'pedro@example.com', 'abc1234', 'administrador', '-33.45, -70.66');
@@ -59,13 +41,7 @@ SELECT * FROM Lista_Deseos WHERE id_usuario = 1;
 INSERT INTO Carro_Videojuego VALUES (1, 1, 1);
 
 -- TC 13 Mostrar los productos del carrito de compras
-SELECT 
-    v.nombre_juego,
-    cv.cantidad
-FROM Carro c
-JOIN Carro_Videojuego cv ON c.id_carro = cv.id_carro
-JOIN Videojuego v ON cv.id_videojuego = v.id_videojuego
-WHERE c.id_usuario=1
+SELECT * FROM Carro_Videojuego WHERE id_carro = 1;
 
 -- TC 14 Mostrar el precio total a pagar por el carrito de compras
 SELECT SUM(cantidad * precio) FROM Carro_Videojuego
@@ -88,56 +64,56 @@ INSERT INTO Carro_Videojuego VALUES (2, 12, 1);
 INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
 VALUES (1, CURRENT_DATE, 'Tarjeta', 'F999');
 
+-- TC 20 Cliente intentar registrar compra con medio de pago no permitido
+INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
+VALUES (1, CURRENT_DATE, 'Cheque', 'F998');
 
--- TC 20
+-- TC 21 Cliente valora el videojuego comprado
+INSERT INTO Valoracion VALUES (1, 1, 5, 'Muy bueno');
 
+-- TC 22 Cliente intenta valorar dos veces el mismo videojuego
+INSERT INTO Valoracion VALUES (1, 1, 4, 'Otra opinión');
 
--- TC 21
+-- TC 23 Obtener los 3 videojuegos con más ventas
+SELECT id_videojuego, SUM(cantidad) AS total_vendidos
+FROM Boleta_Videojuego
+GROUP BY id videojuego
+ORDER BY total_vendidos DESC
+LIMIT 3;
 
+-- TC 24 Obtener videojuegos con más apariciones en listas de deseos
+SELECT id_videojuego, SUM(cantidad) AS total_vendidos
+FROM Boleta_Videojuego
+GROUP BY id videojuego
+ORDER BY total_vendidos DESC
+LIMIT 3;
 
--- TC 22
+-- TC 25 Mostrar todos los productos que se vendan en una ubicación geográfica específica
+SELECT * FROM Usuario WHERE geolocalizacion LIKE '%-33.4%';
 
-
--- TC 23
-
-
--- TC 24
-
-
--- TC 25
-
-
--- TC 26 
-
+-- TC 26 Mostrar ranking de los productos con más ventas
+SELECT id_videojuego, SUM(cantidad) AS total
+FROM Boleta_Videojuego
+GROUP BY id_videojuego
+ORDER BY total DESC;
 
 -- TC 27 Videojuegos según ubicación del usuario,se debe de construir una relación entre tienda, usuario y ventas
 INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
 VALUES ('Nuevo juego', 20000, 'url.jpg', 5, 'Auditable', 1);
 
+--TC28 Trigger que registra cada vez que se inserta un videojuego
+INSERT INTO Videojuego (nombre_juego, precio, url_imagen, stock, descripcion, id_tienda)
+VALUES ('Nuevo juego', 20000, 'url.jpg', 5, 'Auditable', 1);
 
-INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
-VALUES (1, CURRENT_DATE, 'Tarjeta', 'F999');----debe de generar una nueva boleta asi que ver de forma manual si esta bien ingresada 
-
-
-INSERT INTO Boleta (id_usuario, fecha, metodo_pago, factura)
-VALUES (1, CURRENT_DATE, 'Cheque', 'F998');------debe de dar error ya que no existe ese metood de compra aun en las tiendas ver y arreglar 
-
-
-INSERT INTO Valoracion VALUES (1, 1, 5, 'Muy bueno');----debe de pasar asi que ver por que da error 
-
-
-INSERT INTO Valoracion VALUES (1, 1, 4, 'Otra opinión');----- da error pero debe de ser por la duplicacion de una keyBoleta
-
+--TC29 Trigger que registra actualización de stock de videojuegos
 UPDATE Videojuego SET stock = 10 WHERE id_videojuego = 1;
 
-DELETE FROM Videojuego WHERE id_videojuego = 1;-----debe de estar bloqueado ya que con un trigger debe de registrar que el juego si tiene ventas
+--TC30 Trigger DELETE FROM Videojuego WHERE id_videojuego = 1;
+DELETE FROM Videojuego WHERE id_videojuego = 1;
 
-CALL actualizar_precio_categoria('Aventura', 10);----Aumenta precios en 10% de error se debe de buscar el por que pasa eso
+--TC31 Actualizar precio de videojuegos por categoría
+CALL actualizar_precio_categoria('Aventura', 10);
 
-CALL reporte_ventas_usuario(1);------ Reporte de ventas por usuario, tabla con ventas del usuario 1
-
-UPDATE Videojuego SET precio = 30000 WHERE id_videojuego = 1;
-
-UPDATE Videojuego SET stock = 0 WHERE id_videojuego = 2;---- no debe de poder comprarse verificar de forma manual 
-
+--TC32 Generar reporte de ventas por usuario
+CALL reporte_ventas_usuario(1);
 
