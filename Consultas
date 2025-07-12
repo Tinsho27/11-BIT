@@ -87,10 +87,11 @@ INSERT INTO Valoracion VALUES (1, 1, 5, 'Muy bueno');
 INSERT INTO Valoracion VALUES (1, 1, 4, 'Otra opinión');
 
 -- TC 23 Obtener los 3 videojuegos con más ventas
-SELECT id_videojuego, SUM(cantidad) AS total_vendidos
-FROM Boleta_Videojuego
-GROUP BY id videojuego
-ORDER BY total_vendidos DESC
+SELECT v.nombre_juego "Juego", SUM(bv.cantidad) AS Ventas
+FROM Boleta_Videojuego bv
+JOIN Videojuego v ON bv.id_videojuego = v.id_videojuego
+GROUP BY v.id_videojuego, v.nombre_juego
+ORDER BY Ventas DESC
 LIMIT 3;
 
 -- TC 24 Obtener videojuegos con más apariciones en listas de deseos
@@ -101,7 +102,13 @@ ORDER BY total_vendidos DESC
 LIMIT 3;
 
 -- TC 25 Mostrar todos los productos que se vendan en una ubicación geográfica específica
-SELECT * FROM Usuario WHERE geolocalizacion LIKE '%-33.4%';
+SELECT v.nombre_juego "Juego", u.geolocalizacion "Localización"
+FROM Videojuego v
+JOIN Tienda t ON v.id_tienda = t.id_tienda
+JOIN Usuario u ON t.id_administrador = u.id_usuario
+WHERE v.stock > 0
+  AND u.geolocalizacion LIKE '%-33.4%'
+  AND u.geolocalizacion LIKE '%-70.6%';
 
 -- TC 26 Mostrar ranking de los productos con más ventas
 SELECT id_videojuego, SUM(cantidad) AS total
